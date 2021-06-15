@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Application</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    </head>
+
+<body>
+<div class="container">
+    <h1>Shop</h1>
+    <span th:if="${products.size() == 0}">Products List is empty</span>
+    <table th:if="${products.size() > 0}" class="table table-hover">
+        <thead class="tread-dark">
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Price</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"/>
+                <td th:text="${product.title}"/>
+                <td th:text="${product.price}"/>
+                <td><a class="btn btn-secondary" th:href="@{'/details/' + ${product.id}}">Details</a></td>
+                <td><a class="btn btn-danger" th:href="@{'/products/delete/' + ${product.id}}">Delete</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
